@@ -26,15 +26,14 @@ export default function ItemCard({item}) {
         <>
             
             <Card.Root bg={'#0d1620ff'} borderRadius={8} border={'solid 0.5px #5750247b'}>
-                {/* <Image
+                <Image
                     h={'250px'}
                     src={item.image_url}
                     border={'solid 1px #5750247b'}
                     borderBottom={'none'}
                     borderTopRadius={8}
                     
-                /> */}
-                <Image src={optimizedImage}/>
+                />
                 <Card.Body textAlign={'left'} position={'relative'}>
                     <Button 
                         bg={'#c1bbab21'}
