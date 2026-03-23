@@ -13,7 +13,6 @@ export const createHairstyle = async (file, hairstyleData) => {
         const response = await axios.post(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, formData);
         const imageUrl = response.data.secure_url;
         const publicId = response.data.public_id;
-
         const hairstyleResponse = await api.post('catalog/hairstyles/', {
             ...hairstyleData,
             image_url: imageUrl,
@@ -22,7 +21,8 @@ export const createHairstyle = async (file, hairstyleData) => {
         
         return hairstyleResponse.data;
     } catch (error) {
-        console.error('Error creating hairstyle:', error);
+        console.error('Error creating hairstyle:');
+        console.log(error)
         throw error;
     }
 }
