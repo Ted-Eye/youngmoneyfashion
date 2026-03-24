@@ -3,6 +3,7 @@ import NavBar from '../../components/ui/navbar/NavBar'
 import { Box, Container, Heading, HStack, Image, Text } from '@chakra-ui/react'
 import BgFilter from '../../components/ui/background/BgFilter'
 import DatePicker from '../../components/DatePicker'
+import Checkout from '../checkout/Checkout'
 
 export default function addBooking() {
     const [selected, setSelected] = useState(1)
@@ -48,6 +49,7 @@ export default function addBooking() {
                     </HStack>
                     {/* <DatePicker/> */}
                 </Box>
+                <Checkout/>
             </Container>
         </BgFilter>
     )
