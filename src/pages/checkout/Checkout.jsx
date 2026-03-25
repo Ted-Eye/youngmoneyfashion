@@ -45,25 +45,15 @@ const Checkout = () => {
         try{
             setFormState((formState)=>({...formState, status: "initiating"}))
             const res = await api.post("/payment/initiate/", {phone: formState.phone, amount: 10})
-
-            // CHECK RESPONSE FROM BACKEND
-            console.log(res)
-            
             const data = res.data
             const newRef = data.reference
             setFormState((formState)=>({...formState, reference: newRef, status: "pending"}))
             
             startPolling(newRef)
         } catch (error) {
+            console.log("ERROR STATUS:", error.response?.status);
+            console.log("ERROR DATA:", error.response?.data);
             console.log("FULL ERROR:", error);
-            if (error.response) {
-                console.log("STATUS:", error.response.status);
-                console.log("DATA:", error.response.data);
-            } else if (error.request) {
-                console.log("NO RESPONSE RECEIVED:", error.request);
-            } else {
-                console.log("ERROR MESSAGE:", error.message);
-            }
             setFormState((formState)=>({...formState, status: "failed"}))
         }
     }
