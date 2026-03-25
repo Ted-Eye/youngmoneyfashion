@@ -52,8 +52,14 @@ const Checkout = () => {
             startPolling(newRef)
         } catch (error) {
             console.log("FULL ERROR:", error);
-            console.log("RESPONSE:", error?.response);
-            console.log("DATA:", error?.response?.data);
+            if (error.response) {
+                console.log("STATUS:", error.response.status);
+                console.log("DATA:", error.response.data);
+            } else if (error.request) {
+                console.log("NO RESPONSE RECEIVED:", error.request);
+            } else {
+                console.log("ERROR MESSAGE:", error.message);
+            }
             setFormState((formState)=>({...formState, status: "failed"}))
         }
     }
