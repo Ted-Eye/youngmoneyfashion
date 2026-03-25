@@ -45,6 +45,10 @@ const Checkout = () => {
         try{
             setFormState((formState)=>({...formState, status: "initiating"}))
             const res = await api.post("/payment/initiate/", {phone: formState.phone, amount: 10})
+
+            // CHECK RESPONSE FROM BACKEND
+            console.log(res)
+            
             const data = res.data
             const newRef = data.reference
             setFormState((formState)=>({...formState, reference: newRef, status: "pending"}))
