@@ -51,9 +51,17 @@ const Checkout = () => {
             
             startPolling(newRef)
         } catch (error) {
-            console.log("ERROR STATUS:", error.response?.status);
-            console.log("ERROR DATA:", error.response?.data);
-            console.log("FULL ERROR:", error);
+            if (error.response) {
+      // Server responded with a status code outside 2xx
+            console.error("Response error:", error.response.status, error.response.data);
+            } else if (error.request) {
+            // Request was made but no response received
+            console.error("No response received:", error.request);
+            } else {
+            // Something else happened
+            console.error("Error message:", error.message);
+            }
+            console.error("Full error object:", error); // Inspect everything
             setFormState((formState)=>({...formState, status: "failed"}))
         }
     }

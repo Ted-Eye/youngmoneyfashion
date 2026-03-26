@@ -11,11 +11,19 @@ export default function Favourites() {
     
     return (
         <BgFilter>
-            <Box p={8} mt={12}>
-                <Heading>
+            <Box p={8} mt={12} display={'flex'} justifyContent={'center'} flexDirection={'column'} alignItems={'center'}>
+                <Heading mt={4}>
                     Your favourites
                 </Heading>
-                {   favs?.length === 0 ? <Text>Empty! Items You liked will be displayed here...</Text>
+                {   favs?.length === 0 ? (
+                    
+                    <Box mt={8}>
+                    <Image w={400} color={"white"}
+                    src='empty.svg'/>
+                    <Text mt={4}>
+                        Empty! Items You liked will be displayed here...
+                    </Text>
+                </Box>)
                 : <Text>You have {favs.length} favourite items</Text>
                     
                 }

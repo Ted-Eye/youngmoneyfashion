@@ -10,7 +10,7 @@ export default function Hairstyles() {
     
     return (
         <BgFilter>
-            <Box >
+            <Box m={8}>
                 
                 <SortingTabs tabs={tabs}/>
                 <HairstyleForm/>

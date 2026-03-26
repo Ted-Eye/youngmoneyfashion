@@ -39,7 +39,7 @@ export const HairstyleForm = () => {
         }
     }
     return (
-        <Box as="form" onSubmit={handleSubmit} p={4} borderWidth={1} borderRadius={8} boxShadow="lg" mb={18}>
+        <Box as="form" onSubmit={handleSubmit} p={4} borderWidth={1} borderRadius={4} boxShadow="lg" mt={8}>
 
             <Field.Root mb={2}>
                 <Field.Label>Select new hairstyle image</Field.Label>

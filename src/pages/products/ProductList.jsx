@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { data } from 'react-router-dom'
+import BgFilter from '../../components/ui/background/BgFilter'
+import { Box, Heading } from '@chakra-ui/react'
 
 export default function ProductList() {
     const [products, setProducts] = useState([])
@@ -21,8 +23,12 @@ export default function ProductList() {
     },[])
     console.log(products)
     return (
-        <div>
-            Purchase products for your hair needs
-        </div>
+        <BgFilter>
+            <Box display={'flex'} mt={12} alignItems={'center'} justifyContent={'center'}>
+                <Heading mt={8}>
+                    Purchase products for your hair needs
+                </Heading>
+            </Box>
+        </BgFilter>
     )
 }
