@@ -3,9 +3,6 @@ import api from '../../../api';
 import { Box, Button, Heading, Input, Text } from '@chakra-ui/react';
 
 const Checkout = () => {
-    // const [phone, setPhone] = useState("");
-    // const [satatus, setStatus] = useState("idle")
-    // const [reference, setReference] = useState(null)
     const [formState, setFormState] = useState(
         {
             phone: "",
@@ -18,29 +15,31 @@ const Checkout = () => {
         setFormState((formState)=>({...formState, [name]: value}))
     }
     const startPolling = (ref) => {
-        const interval = setInterval(async ()=>{
-            try{
-                const res = await api.get(`/payment/status/${ref}/`)
-                const data = await res.data
-                if (data.status === "SUCCESS"){
-                    setFormState((formState)=>({...formState, status: "pending"}))
-                    clearInterval(interval)
-                }
-                if (data.status === "FAILED") {
-                    setFormState((formState)=>({...formState, status: "failed"}))
-                    clearInterval(interval)
-                }
-            }catch (error) {
-                console.error(error)
-                clearInterval(interval)
-                setFormState((formState)=>({...formState, status: "failed"}))
-            }
-        }, 5000);
+    const interval = setInterval(async () => {
+        try {
+            const res = await api.get(`/payment/status/${ref}/`)
+            const data = res.data
 
-        setTimeout(()=>{
-            clearImmediate(interval)
-        }, 120000)
-    }
+            if (data.status === "SUCCESS") {
+                setFormState((formState) => ({ ...formState, status: "success" }))
+                clearInterval(interval)
+            }
+            if (data.status === "FAILED") {
+                setFormState((formState) => ({ ...formState, status: "failed" }))
+                clearInterval(interval)
+            }
+        } catch (error) {
+            console.error(error)
+            clearInterval(interval)
+            setFormState((formState) => ({ ...formState, status: "failed" }))
+        }
+    }, 5000)
+
+    setTimeout(() => {
+        clearInterval(interval)
+    }, 120000)
+}
+
     const initiatePayment = async () => {
         try{
             setFormState((formState)=>({...formState, status: "initiating"}))
