@@ -20,7 +20,7 @@ const Checkout = () => {
     const startPolling = (ref) => {
         const interval = setInterval(async ()=>{
             try{
-                const res = await api.get(`/peyment/status/${ref}/`)
+                const res = await api.get(`/payment/status/${ref}/`)
                 const data = await res.data
                 if (data.status === "SUCCESS"){
                     setFormState((formState)=>({...formState, status: "pending"}))
@@ -44,7 +44,7 @@ const Checkout = () => {
     const initiatePayment = async () => {
         try{
             setFormState((formState)=>({...formState, status: "initiating"}))
-            const res = await api.post("/payment/initiate/", {phone: formState.phone, amount: 10})
+            const res = await api.post("/payment/initiate/", {phone: formState.phone, amount: 5})
             const data = res.data
             const newRef = data.reference
             setFormState((formState)=>({...formState, reference: newRef, status: "pending"}))
