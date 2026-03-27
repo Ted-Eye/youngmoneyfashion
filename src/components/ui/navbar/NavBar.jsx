@@ -1,7 +1,5 @@
 import { Flex, Box, Image, HStack, Text, Button, Spacer, Link } from "@chakra-ui/react";
-import addBooking from "../../../pages/bookings/addBooking";
 import { useState } from "react";
-import { SiPacker } from "react-icons/si";
 import {Link as RouterLink} from 'react-router-dom'
 import { MobileMenu } from "./MobileMenu";
 
@@ -13,7 +11,7 @@ export default function NavBar() {
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
-    const pages = ['Gallery', 'Products', 'Favourites', 'Bookings']
+    const pages = ['Gallery', 'Products', 'Favourites', 'My bookings']
     const handleClick = () => {
         return <addBooking/>
     }
@@ -31,7 +29,7 @@ export default function NavBar() {
             >
 
             <Link as = {RouterLink} to="/">
-                <Box  w={{base: 150, md: 250, lg: 200}} flexGrow={{}}>
+                <Box  w={[150, 250, 300, 320]} flexGrow={{base:1}}>
                 <Image 
                 pt={'5px'} bg={'#0b0b0bf2'} borderRadius={50}
                 src="/doctor.png" pl={2}
@@ -41,28 +39,13 @@ export default function NavBar() {
             
             <Spacer></Spacer>
             <Box display={{base: 'none', sm: 'flex'}}>
-                <Link as={RouterLink} to="/gallery" color={'#eab822ff'}>
-                <Text p={'4px'}>
-                Gallery
-                </Text>
-            </Link>
-            <Link as={RouterLink} to="/products" color={'#c29b65ff'}>
-                <Text p={'4px'}>
-                    Products
-                </Text>
-            </Link>
-            <Link as={RouterLink} to="/favourites" color={'#c29b65ff'}>
-                <Text p={'4px'}>
-                    My Favourites
-                </Text>
-            </Link>
-
-            <Link as={RouterLink} to="/history" color={'#c29b65ff'}>
-                <Text p={'4px'}>
-                    Bookings
-                </Text>
-            </Link>
-
+                {
+                    pages.map((page, index)=>(
+                        <Link key={index} as={RouterLink} to={page==="My bookings"? '/bookings': `/${page.toLowerCase()}`} color={'#ffffffff'} padding={['4px 12px', '4px 14px', '4px 16px']}>
+                            <Text>{page}</Text>
+                        </Link>
+                    ))
+                }
             {/* <Link href="/about" color={'#c29b65ff'}>
                 <Text p={'4px'}>
                     About Us

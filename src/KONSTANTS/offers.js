@@ -42,4 +42,20 @@ export const OFFERS = [
         action: 'Shop products',
         route: '/products'
     },
+    {
+        id: 5, 
+        title: "SPA and Sauna",
+        img: 'spa-svgrepo-com.svg',
+        text: 'Get the best deals for manicure and pedicure kits, haire treatment products, face treatment products and you name it...',
+        action: 'Shop products',
+        route: '/products'
+    },
+    {
+        id: 6, 
+        title: "SPA and Sauna",
+        img: 'spa-svgrepo-com.svg',
+        text: 'Get the best deals for manicure and pedicure kits, haire treatment products, face treatment products and you name it...',
+        action: 'Shop products',
+        route: '/products'
+    },
 ]

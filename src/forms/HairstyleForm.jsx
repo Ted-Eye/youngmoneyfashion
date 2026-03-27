@@ -39,7 +39,7 @@ export const HairstyleForm = () => {
         }
     }
     return (
-        <Box as="form" onSubmit={handleSubmit} p={4} borderWidth={1} borderRadius={4} boxShadow="lg" mt={8}>
+        <Box as="form" onSubmit={handleSubmit} p={4} borderWidth={1} borderRadius={4} boxShadow="lg" mt={8} border={'solid 1px #b078077b'} bg={'#ffffffff'} color={'#f69b097b'}>
 
             <Field.Root mb={2}>
                 <Field.Label>Select new hairstyle image</Field.Label>
@@ -54,9 +54,10 @@ export const HairstyleForm = () => {
             </FileUpload.Root>
             </Field.Root>
             
-            <Field.Root >
-                <Field.Label color={'#f69b097b'} fontSize={14}>Name</Field.Label>
-                <Input type="text" name="name"  placeholder="Hairstyle name" value={hairstyleData.name} onChange={handleInputChange} />
+            <Field.Root>
+                <Field.Label fontSize={14}>Name</Field.Label>
+                <Input type="text" name="name"  placeholder="Hairstyle name" value={hairstyleData.name} 
+                onChange={handleInputChange} />
             </Field.Root>
             <Field.Root >
                 <Field.Label color={'#f69b097b'} fontSize={14}>Price</Field.Label>

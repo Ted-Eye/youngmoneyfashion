@@ -6,7 +6,7 @@ export default function Appointment({item}) {
     
     const navigate = useNavigate()
     const handlleClick = ()=>{
-        navigate('/booking')
+        navigate('/checkout')
     }
     return (
     <>

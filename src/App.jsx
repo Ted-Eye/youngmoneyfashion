@@ -10,6 +10,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import ProductList from './pages/products/ProductList'
 import addBooking from './pages/bookings/addBooking'
 import { CatalogProvider } from './contexts/CatalogContext'
+import Bookings from './pages/bookings/Bookings'
 
 function App() {
 
@@ -26,7 +27,8 @@ function App() {
           <Route path='/favourites' Component ={Favourites}/>
           <Route path='/history' Component ={History}/>
           <Route path='/about' Component ={AboutUs}/>
-          <Route path='/booking' Component ={addBooking}/>
+          <Route path='/checkout' Component ={addBooking}/>
+          <Route path='/bookings' Component ={Bookings}/>
           <Route path='/{*}' Component ={''}/>
         </Routes>
         </CatalogProvider>

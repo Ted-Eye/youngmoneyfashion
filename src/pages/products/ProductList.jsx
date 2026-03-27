@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { data } from 'react-router-dom'
 import BgFilter from '../../components/ui/background/BgFilter'
-import { Box, Heading } from '@chakra-ui/react'
+import { Box, Button, Heading, Span, Stack, Text } from '@chakra-ui/react'
+import { TimerIcon } from 'lucide-react'
 
 export default function ProductList() {
     const [products, setProducts] = useState([])
@@ -24,10 +25,18 @@ export default function ProductList() {
     console.log(products)
     return (
         <BgFilter>
-            <Box display={'flex'} mt={12} alignItems={'center'} justifyContent={'center'}>
-                <Heading mt={8}>
-                    Purchase products for your hair needs
+            <Box display={'flex'} mt={[16, 24]} alignItems={'center'} textAlign={'center'} flexDirection={'column'} gap={4} mx={3}>
+                <Heading fontSize={[18, 24]} px={[4, 8]} lineHeight={[1.2]}>
+                    Purchase products for your hair grooming, face treatments and general esthetics
                 </Heading>
+                
+                <Stack direction={'row'} py={[2, 8]} px={['20px', '110px']} border={'solid 1px gold'} borderRadius={4} bg={'#0a0908ff'} gap={3} alignItems={'center'}>
+                    <TimerIcon size={45}/>
+                    <Text >
+                    Come back later. Our product inventory will be loaded soon
+                </Text>
+                </Stack>
+                <Button w={'74%'}>Back to gallery</Button>
             </Box>
         </BgFilter>
     )
