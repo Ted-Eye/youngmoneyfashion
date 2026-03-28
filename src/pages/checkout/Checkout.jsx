@@ -19,7 +19,10 @@ const Checkout = () => {
         try {
             const res = await api.get(`/payment/status/${ref}/`)
             const data = res.data
-
+            console.log(res)
+            if (data.status === "PENDING") {
+                setFormState((formState) => ({ ...formState, status: "pending" }))
+            }
             if (data.status === "SUCCESS") {
                 setFormState((formState) => ({ ...formState, status: "success" }))
                 clearInterval(interval)
@@ -43,11 +46,13 @@ const Checkout = () => {
     const initiatePayment = async () => {
         try{
             setFormState((formState)=>({...formState, status: "initiating"}))
-            const res = await api.post("/payment/initiate/", {phone: formState.phone, amount: 5})
+            const res = await api.post("/payment/initiate/", {phone: formState.phone, amount: 2, name: "John Doe", hairstyle: "tnzf7srznvqkifzorr3x"})
             const data = res.data
             const newRef = data.reference
+            const appointment = data.appointment
             setFormState((formState)=>({...formState, reference: newRef, status: "pending"}))
             
+            console.log('NEW APPOINTMENT:...', appointment)
             startPolling(newRef)
         } catch (error) {
             if (error.response) {
