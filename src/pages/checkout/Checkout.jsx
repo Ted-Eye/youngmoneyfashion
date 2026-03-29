@@ -7,7 +7,7 @@ import { ArrowRightIcon } from 'lucide-react';
 
 const Checkout = () => {
     const [formState, setFormState] = useState(
-        {
+        {   name: "",
             phone: "",
             status: "idle",
             reference: null
@@ -52,7 +52,7 @@ const Checkout = () => {
     const initiatePayment = async () => {
         try{
             setFormState((formState)=>({...formState, status: "initiating"}))
-            const res = await api.post("/payment/initiate/", {phone: formState.phone, amount: 2, name: "John Doe", selection: "tnzf7srznvqkifzorr3x"})
+            const res = await api.post("/payment/initiate/", {phone: formState.phone, amount: 2, name: formState.name, selection: "tnzf7srznvqkifzorr3x"})
             const data = res.data
             const newRef = data.reference
             const appointment = data.appointment
@@ -78,13 +78,25 @@ const Checkout = () => {
     }
     return (
         <Box textAlign={'center'} mx={4} bg={'#7c4e02ad'} p={4} border={'solid 1px #f5eded44'} borderRadius={4}>
-            <Heading>
-                Enter you name and number 
+            <Heading fontSize={14}>
+                Payment steps:
             </Heading>
-            
+            <Text fontSize={12} mb={8}>
+                    1. Enter your name and phone number and submit payment<br/>
+                    2. Confirm the payment and get your ticket on the next page
+                </Text>
+            <Input name='name'
+                    pl={4} pt={2}
+                    value={formState.name}
+                    placeholder='Enter your name'
+                    onChange={handleChange}
+                    m={'auto'}
+                    mb={3}
+            />
             <Input name='phone'
                     pl={4} pt={2}
                     value={formState.phone}
+                    placeholder='Enter number'
                     onChange={handleChange}
                     m={'auto'}
             />
