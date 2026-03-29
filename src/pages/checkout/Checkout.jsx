@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import api from '../../../api';
-import { Box, Button, Heading, Input, Text } from '@chakra-ui/react';
+import { Box, Button, Heading, Input, Text, Link, NumberInputLabel, FieldLabel, HStack } from '@chakra-ui/react';
+import {Link as RouterLink, useNavigate} from 'react-router-dom';
+import { ArrowRightIcon } from 'lucide-react';
+
 
 const Checkout = () => {
     const [formState, setFormState] = useState(
@@ -10,6 +13,10 @@ const Checkout = () => {
             reference: null
         }
     )
+    const [newAppointment, setNewAppointment] = useState(null)
+    const navigate = useNavigate()
+
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormState((formState)=>({...formState, [name]: value}))
@@ -19,7 +26,6 @@ const Checkout = () => {
         try {
             const res = await api.get(`/payment/status/${ref}/`)
             const data = res.data
-            console.log(res)
             if (data.status === "PENDING") {
                 setFormState((formState) => ({ ...formState, status: "pending" }))
             }
@@ -46,10 +52,11 @@ const Checkout = () => {
     const initiatePayment = async () => {
         try{
             setFormState((formState)=>({...formState, status: "initiating"}))
-            const res = await api.post("/payment/initiate/", {phone: formState.phone, amount: 2, name: "John Doe", hairstyle: "tnzf7srznvqkifzorr3x"})
+            const res = await api.post("/payment/initiate/", {phone: formState.phone, amount: 2, name: "John Doe", selection: "tnzf7srznvqkifzorr3x"})
             const data = res.data
             const newRef = data.reference
             const appointment = data.appointment
+            appointment&& setNewAppointment(appointment)
             setFormState((formState)=>({...formState, reference: newRef, status: "pending"}))
             
             console.log('NEW APPOINTMENT:...', appointment)
@@ -70,18 +77,24 @@ const Checkout = () => {
         }
     }
     return (
-        <Box>
+        <Box textAlign={'center'} mx={4} bg={'#7c4e02ad'} p={4} border={'solid 1px #f5eded44'} borderRadius={4}>
             <Heading>
-                PAYMENT GATEWAY
+                Enter you name and number 
             </Heading>
+            
             <Input name='phone'
+                    pl={4} pt={2}
                     value={formState.phone}
                     onChange={handleChange}
+                    m={'auto'}
             />
         <Button type='submit'
+            mt={2}
             onClick={initiatePayment}
+            paddingBottom={0} px={4}
+            w={'100%'}
         >
-            Submit payment
+            {formState.status==='success'? 'Get your ticket': 'Submit payment'}
         </Button>
         {
             formState.status==='initiating' && (<Text>Initiatiating payment...</Text>)
@@ -90,7 +103,15 @@ const Checkout = () => {
             formState.status==='pending' && (<Text>Waiting confirmation...</Text>)
         }
         {
-            formState.status==='success' && (<Text>Payment successful!</Text>)
+            formState.status==='success' && (
+            <Box>
+                <Text>Payment successful!</Text>
+                <HStack>
+                    <Text onClick={()=>navigate('/bookings', {state: {newAppointment}})}>GET YOUR TICKET..</Text>
+                    <ArrowRightIcon/>
+                </HStack>
+            </Box> 
+        )
         }
         {
             formState.status==='failed' && (<Text>Payment failed!</Text>)
