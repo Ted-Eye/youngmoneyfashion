@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import api from '../../../api';
 import { Box, Button, Heading, Input, Text, Link, NumberInputLabel, FieldLabel, HStack } from '@chakra-ui/react';
 import {Link as RouterLink, useNavigate} from 'react-router-dom';
@@ -23,6 +23,11 @@ const Checkout = () => {
         const { name, value } = e.target;
         setFormState((formState)=>({...formState, [name]: value}))
     }
+    useEffect(()=>{
+        if(formState.status === "success" && newAppointment){
+            navigate('/bookings', {state: {newAppointment, TransactionState}})
+        }
+    },[formState.status])
     const startPolling = (ref) => {
     const interval = setInterval(async () => {
         try {

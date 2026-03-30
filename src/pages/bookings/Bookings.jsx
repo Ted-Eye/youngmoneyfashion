@@ -21,7 +21,7 @@ const Bookings = () => {
                                 <Heading mt={4} fontSize={22}>
                                     Appointment details:
                                     </Heading>
-                                <Box mt={8} display={'flex'} flexDirection={'column'} gap={2} alignItems={'center'} border={'solid 1px #995f127a'} py={8} mx={6} borderRadius={4} bg={'#74726de6'} color={'#ada15dff'}>
+                                <Box mt={8} display={'flex'} flexDirection={'column'} gap={2} alignItems={'center'} border={'solid 1px #995f127a'} py={8} mx={6} borderRadius={4} bg={'#4b4a47e6'} color={'#ffffffff'}>
                                     
                                     <Text>{`Ticket number: ${appointment.ticket_number}`}</Text>
                                     <Text>{`Customer name: ${appointment.bearer}`}</Text>
