@@ -99,7 +99,7 @@ const Checkout = ({method}) => {
     return (
         <>
         
-            <Box textAlign={'center'} mx={4} bg={'#7c4d023a'} p={4} border={'solid 1px #853e3e49'} borderRadius={4} pb={1} mt={4}>
+            <Box textAlign={'center'} mx={6} bg={'#7c4d023a'} p={4} border={'solid 1px #853e3e49'} borderRadius={4} pb={1} mt={12}>
             <Heading my={2} fontSize={18}  borderBottom={'solid 2px #f9eeee6b'} mb={8}>
                 Paying with {method.short}
             </Heading>
@@ -107,7 +107,7 @@ const Checkout = ({method}) => {
                     pl={1} pt={2}
                     pb={0}
                     value={formState.name}
-                    placeholder={method.id===3? 'Wallet tag or Affair Nkap username' : 'Enter your name'}
+                    placeholder={method.id===3? 'Enter wallet tag or Affair Nkap username' : 'Enter your name'}
                     onChange={handleChange}
                     m={'auto'}
                     mb={3}
@@ -128,7 +128,7 @@ const Checkout = ({method}) => {
             mt={4}
             onClick={initiatePayment}
             paddingBottom={0} px={4}
-            w={'100%'} bg={loading? '#73606091': '#7c4e02ad'} color={'#ffde0bff'} border={'solid 1px #7c707083'}
+            w={'100%'} bg={loading? '#575252ff': '#7c4e02ad'} color={'#ffde0bff'} border={'solid 1px #595050c5'}
         >
         {loading ? 'Processing...' : 'Submit payment'}
         </Button>
