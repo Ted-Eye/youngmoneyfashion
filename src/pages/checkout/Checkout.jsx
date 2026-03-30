@@ -62,7 +62,7 @@ const Checkout = () => {
             setLoading(true)
         try{
             setFormState((formState)=>({...formState, status: "initiating"}))
-            const res = await api.post("/payment/initiate/", {phone: formState.phone, amount: 12, name: formState.name, selection: "tnzf7srznvqkifzorr3x"})
+            const res = await api.post("/payment/initiate/", {phone: formState.phone, amount: 2, name: formState.name, selection: "tnzf7srznvqkifzorr3x"})
             const data = res.data
             const newRef = data.reference
             const appointment = data.appointment
