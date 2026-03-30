@@ -59,3 +59,24 @@ export const OFFERS = [
         route: '/products'
     },
 ]
+
+export const PAYMENT_OPTIONS = [
+        {
+            id: 1,  
+            name: 'MTN Mobile Money', 
+            img: 'momo.jpg', 
+            short: 'MoMo'
+        }, 
+        {
+            id: 2, 
+            name: 'Orange Money', 
+            img: 'om.jpg', 
+            short: 'OM'
+        },
+        {
+            id: 3, 
+            name: 'Nkap Pay', 
+            img: 'nkap.png', 
+            short: 'Nkap'
+        }
+    ]

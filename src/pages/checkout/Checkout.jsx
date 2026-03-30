@@ -5,7 +5,7 @@ import {Link as RouterLink, useNavigate} from 'react-router-dom';
 import { ArrowRightIcon } from 'lucide-react';
 
 
-const Checkout = () => {
+const Checkout = ({method}) => {
     const [loading, setLoading] = useState(false)
     const [formState, setFormState] = useState(
         {   name: "",
@@ -77,70 +77,64 @@ const Checkout = () => {
             console.log('NEW APPOINTMENT:...', appointment)
             startPolling(newRef)
         } catch (error) {
-            if (error.response) {
+            if (error.message==='Network Error' || 'timeout exceeded' ) {
+                alert('No internet. Check your connection and try again')
+                setLoading(false)
+                setFormState((formState) => ({ ...formState, status: "idle" }))
+            }
+            
+            else if (error.response) {
       // Server responded with a status code outside 2xx
                 console.error("Response error:", error.response.status, error.response.data);
                 setLoading(false)
-            } else if (error.request) {
-            // Request was made but no response received
-                console.error("No response received:", error.request);
-                setLoading(false)
             } else {
             // Something else happened
-                console.error("Error message:", error.message);
+                console.error("Error:", error);
                 setLoading(false)
             }
             console.error("Full error object:", error); // Inspect everything
-            setFormState((formState)=>({...formState, status: "failed"}))
         }
     }
     
     return (
-        <Box textAlign={'center'} mx={4} bg={'#7c4e02ad'} p={4} border={'solid 1px #f5eded44'} borderRadius={4}>
-            <Heading fontSize={14}>
-                Payment steps:
+        <>
+        
+            <Box textAlign={'center'} mx={4} bg={'#7c4d023a'} p={4} border={'solid 1px #853e3e49'} borderRadius={4} pb={1} mt={4}>
+            <Heading my={2} fontSize={18}  borderBottom={'solid 2px #f9eeee6b'} mb={8}>
+                Paying with {method.short}
             </Heading>
-            <Text fontSize={12} mb={8}>
-                    1. Enter account details and submit payment<br/>
-                    2. Confirm the payment on your phone
-                </Text>
             <Input name='name'
-                    pl={4} pt={2}
+                    pl={1} pt={2}
+                    pb={0}
                     value={formState.name}
-                    placeholder='Enter your name'
+                    placeholder={method.id===3? 'Wallet tag or Affair Nkap username' : 'Enter your name'}
                     onChange={handleChange}
                     m={'auto'}
                     mb={3}
             />
-            <Input name='phone'
-                    pl={4} pt={2}
+            {
+                method.id===1 || method.id===2?
+                <Input name='phone'
+                    pl={1} pt={2} pb={0}
                     value={formState.phone}
                     placeholder='Enter number'
                     onChange={handleChange}
                     m={'auto'}
             />
+            : null
+            }
         <Button type='submit'
             disabled={loading}
-            mt={2}
+            mt={4}
             onClick={initiatePayment}
             paddingBottom={0} px={4}
-            w={'100%'}
+            w={'100%'} bg={loading? '#73606091': '#7c4e02ad'} color={'#ffde0bff'} border={'solid 1px #7c707083'}
         >
         {loading ? 'Processing...' : 'Submit payment'}
         </Button>
-        <Text mt={4} color={`${formState.status==='failed'&& '#ed2525ff'}`} fontSize={16}>{TransactionState}</Text>
-        {
-            formState.status==='success' && (
-            <Box>
-                <Text>Payment successful!</Text>
-                {/* <HStack>
-                    <Text onClick={()=>navigate('/bookings', {state: {newAppointment}})}>GET YOUR TICKET..</Text>
-                    <ArrowRightIcon/>
-                </HStack> */}
-            </Box> 
-        )
-        }
+        <Text mt={4} color={`${formState.status==='failed'&& '#de3939ff'}`} fontSize={16}>{TransactionState}</Text>
         </Box>
+        </>
     )
 }
 
