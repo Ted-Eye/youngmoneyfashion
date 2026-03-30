@@ -17,7 +17,7 @@ export const MobileMenu = ({ children }) => {
             </Menu.Trigger>
             <Portal>
             <Menu.Positioner>
-                <Menu.Content bg={'#9f6304f8'} border={'solid 1px #83530651'} borderRadius={8} p={2} alignContent={'center'}>
+                <Menu.Content bg={'#7c4d02ff'} border={'solid 1px #83530651'} borderRadius={8} p={2} alignContent={'center'}>
                 {pages.map((page) => (
                     <Menu.Item key={page} as={RouterLink} to={`/${page.toLowerCase()}`} color={'#white'} p={2} borderRadius={4} _hover={{bg: '#8353068f'}}>
                     {page}

@@ -97,7 +97,7 @@ export default function Landing() {
                                     gap={4} px={4}
                                     mb={4} mt={-10} >
                             {
-                                showList.map((item)=><Box key={item.id} bg={'#ed830b6b'}
+                                showList.map((item)=><Box key={item.id} bg={'#7c4e02ad'}
                                 color={'black'} display={'flex'} justifyContent={'center'}  alignItems={'center'} height={['300px, 400px, 600px 750px']}
                                 borderRadius={'5%'} pb={2}
                                 flexDirection={'column'} borderBottomRadius={70}

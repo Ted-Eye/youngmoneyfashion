@@ -20,7 +20,7 @@ export default function NavBar() {
             as={"nav"}
             p={'8px 26px'}
             // p={'10px'}
-            bg={'#835306ff'}
+            bg={'#7c4e02ad'}
             align={'center'}
             position={'fixed'}
             w={'100%'}

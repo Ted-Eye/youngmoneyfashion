@@ -38,11 +38,11 @@ const Bookings = () => {
                 <Heading fontSize={['14px', '28px', '32px', '48px']} >
                 Enter your ticket number to check booking details
             </Heading>
-            <Box >
-                <HStack mt={5} gap={0} as={'form'} w={'100%'}>
-                    <Input border={'solid 1px #995e12ff'} >
+            <Box alignContent={'center'} textAlign={'center'}>
+                <HStack mt={5} gap={0} as={'form'} w={'80%'}>
+                    <Input border={'solid 1px #7c4e02ad'} borderRadius={'1px'} ml={10}>
                     </Input>
-                    <Button ml={-10} w={20} bg={'#995e12ff'}>
+                    <Button ml={-20} w={20} bg={'#7c4e02ad'}>
                         Search
                     </Button>
                 </HStack>

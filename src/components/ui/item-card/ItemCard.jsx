@@ -25,7 +25,7 @@ export default function ItemCard({item}) {
     return (
         <>
             
-            <Card.Root bg={'#0d1620ff'} borderRadius={8} border={'solid 0.5px #5750247b'}>
+            <Card.Root bg={'#7c4e02ad'} borderRadius={8} border={'solid 0.5px #5750247b'} color={'white'}>
                 <Image
                     h={'250px'}
                     src={item.image_url}
@@ -36,15 +36,15 @@ export default function ItemCard({item}) {
                 />
                 <Card.Body textAlign={'left'} position={'relative'}>
                     <Button 
-                        bg={'#c1bbab21'}
+                        bg={'#c1bbab04'}
                         position={'absolute'} top={2} left={6}
                         onClick={()=>(toggleFav(item.id) )}
                         h={8}>
                         <Text >
-                            <FaThumbsUp size={42} color={isFav? '#f69b09ff': '#f69b092e'}/>
+                            <FaThumbsUp size={42} color={isFav? '#f69b09ff': '#f2b76562'}/>
                         </Text>
                     </Button>
-                    <Card.Title ml={16} fontSize={16} color={'#f69b097b'}>
+                    <Card.Title ml={16} fontSize={16}>
                         <Box ml={4}>
                             {item.name}
                             <Stack direction={'row'} alignItems={'center'}>

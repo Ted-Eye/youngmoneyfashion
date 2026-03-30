@@ -8,7 +8,6 @@ export default function Hairstyles() {
     const {items, products, favs, loading} = useCatalog()
     const tabs = [{name: 'All', value: items}, {name: 'Favourites', value: favs}, {name: 'Trending', value: items.slice(1, 5)}]
     
-    console.log(items[0])
     return (
         <BgFilter>
             <Box m={8}>

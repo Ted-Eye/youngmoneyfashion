@@ -18,7 +18,7 @@ export default function Appointment({item}) {
             </Button>
         </Dialog.Trigger>
         <Portal>
-            <Dialog.Backdrop bg={'#313e4ac2'}/>
+            <Dialog.Backdrop bg={'#e5e8ebed'}/>
             <Dialog.Positioner position={'fixed'} top={20}>
             <Dialog.Content w={'90%'} alignItems={'center'} py={4} bg={'#0d1620ff'}>
                 <Dialog.Header>
