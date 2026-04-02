@@ -25,18 +25,17 @@ export default function ItemCard({item}) {
     return (
         <>
             
-            <Card.Root bg={'#7c4e02ad'} borderRadius={8} border={'solid 0.5px #5750247b'} color={'white'}>
+            <Card.Root borderRadius={8} border={'solid 2px #816404c9'} color={'white'}>
                 <Image
                     h={'250px'}
                     src={item.image_url}
-                    border={'solid 1px #5750247b'}
                     borderBottom={'none'}
                     borderTopRadius={8}
                     
                 />
-                <Card.Body textAlign={'left'} position={'relative'}>
+                <Card.Body textAlign={'left'} position={'relative'} bg={'#11183c76'}>
                     <Button 
-                        bg={'#c1bbab04'}
+                        bg={'#11183c76'}
                         position={'absolute'} top={2} left={6}
                         onClick={()=>(toggleFav(item.id) )}
                         h={8}>

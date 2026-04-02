@@ -22,7 +22,7 @@ export default function Appointment({item}) {
             <Dialog.Positioner position={'fixed'} top={20}>
             <Dialog.Content w={'90%'} alignItems={'center'} py={4} bg={'#0d1620ff'}>
                 <Dialog.Header>
-                    <VStack mt={1} gap={"0.2"}>
+                    <VStack mt={1} gap={"2"} w={300}>
                         <Image src="doctor.png" w={120} borderBottom={'solid 1px'} pb={2}/>
                         <Dialog.Title  color={'white'} fontSize={20} pt={2}>Schedule your appointment</Dialog.Title>
                     </VStack>
@@ -30,7 +30,7 @@ export default function Appointment({item}) {
 
                 <Dialog.Body py={1} px={2} color={'#835306ff'}>
                     <Heading mb={1} fontSize={16}>Choice preview:</Heading>
-                    <HStack w={'100%'} gap={4} border={'solid 0.5px #5750247b'} borderRadius={4}>
+                    <HStack w={'100%'} gap={2} border={'solid 0.5px #5750247b'} borderRadius={4}>
                         <Image
                     h={'120px'}
                     src={item.image}
@@ -40,7 +40,7 @@ export default function Appointment({item}) {
                 />
                         <Box px={2}>
                             
-                <Heading fontSize={14}>{`Execution: ${ item.treatment_duration } `}</Heading>
+                <Heading fontSize={18}>{`Execution: ${ item.treatment_duration } `}</Heading>
                 <Heading fontSize={18}>
                     Price: {item.price} XAF
                 </Heading>
