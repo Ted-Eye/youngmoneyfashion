@@ -12,49 +12,55 @@ import { GalleryHorizontal } from "lucide-react";
 export const OFFERS = [
     {
         id: 1, 
+        icon: 'gallery.svg',
         title: "Show room",
-        img: 'gallery.svg',
-        text: 'Browse our catalog of an arsenal of styles to choose from',
+        img: 'galleryThumbnail.jpg',
+        text: 'Browse our catalog and pick your desired hairstyle',
         action: 'Take a tour',
         route: '/gallery'
     },
     {
         id: 2, 
+        icon: 'cart.svg',
         title: "Products",
-        img: 'cart.svg',
-        text: 'Get the best deals for manicure and pedicure kits, haire treatment products, face treatment products and you name it...',
+        img: 'products.webp',
+        text: 'Manicure and pedicure kits, haire treatment products, face treatment products and more...',
         action: 'Shop products',
         route: '/products'
     },
     {
         id: 3, 
+        icon: 'swift.svg',
         title: "Instant service",
-        img: 'swift.svg',
-        text: 'Get the best deals for manicure and pedicure kits, haire treatment products, face treatment products and you name it...',
-        action: 'Shop products',
+        img: 'barberskit.jpg',
+        text: 'Busy? Perhaps you have a tight schedule. We bring the service to you on the spot.',
+        action: 'Get one',
         route: '/products'
     },
     {
         id: 4, 
+        icon: 'spa-svgrepo-com.svg',
         title: "SPA and Sauna",
-        img: 'spa-svgrepo-com.svg',
-        text: 'Get the best deals for manicure and pedicure kits, haire treatment products, face treatment products and you name it...',
-        action: 'Shop products',
+        img: 'spa.avif',
+        text: 'Proffessional massage, spa and sauna',
+        action: 'book slot',
         route: '/products'
     },
     {
-        id: 5, 
-        title: "SPA and Sauna",
-        img: 'spa-svgrepo-com.svg',
-        text: 'Get the best deals for manicure and pedicure kits, haire treatment products, face treatment products and you name it...',
+        id: 5,
+        icon: 'spa-svgrepo-com.svg', 
+        title: "Manicure and Pedicure",
+        img: 'manicure.webp',
+        text: 'Get the best deals for manicure and pedicure kits, haire treatment products, face treatment products and more...',
         action: 'Shop products',
         route: '/products'
     },
     {
         id: 6, 
-        title: "SPA and Sauna",
-        img: 'spa-svgrepo-com.svg',
-        text: 'Get the best deals for manicure and pedicure kits, haire treatment products, face treatment products and you name it...',
+        icon: 'spa-svgrepo-com.svg',
+        title: "Hair extensions",
+        img: 'extensions.jpg',
+        text: 'Human hair, eye lash extensions and make ups',
         action: 'Shop products',
         route: '/products'
     },

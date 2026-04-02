@@ -11,7 +11,6 @@ import ProductList from './pages/products/ProductList'
 import addBooking from './pages/bookings/addBooking'
 import { CatalogProvider } from './contexts/CatalogContext'
 import Bookings from './pages/bookings/Bookings'
-
 function App() {
 
   return (

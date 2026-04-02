@@ -14,24 +14,25 @@ export default function addBooking() {
     }
     
     const paymentMethod = payments.filter((p)=>p.id===selected)[0]
-    console.log(paymentMethod)
     return (
         <BgFilter>
-            <Container mt={'68px'} display={'flex'} alignItems={'center'} flexDirection={'column'} gap={0}>
+            <Container mt={['80px', '120px']} display={'flex'} alignItems={'center'} flexDirection={'column'} gap={0}>
                 <Heading color={'white'} fontSize={20}>
                     Complete Your Booking
                 </Heading>
                 <Box px={4} fontSize={14} mt={'2px'} >
                     <Text>
-                        Select preferred payment method and continue
+                        Select your preferred payment method and continue
                     </Text>
                     <HStack gap={3} mt={2} justifyContent={'center'}>
                         {
                             payments.map((payment)=>(
-                                <Box key={payment.id} borderBottom={payment.id===selected? 'solid 4px #ffffff8d' : 'none'} pb={3} h={'40px'} overflow={'hidden'} px={2} mb={2}>
+                                <Box key={payment.id} border={payment.id===selected? 'solid 2px #8f570e62' : 'none'} 
+                                bg={payment.id===selected? '#a3810942' : 'none'}
+                                p={2} h={'78px'} overflow={'hidden'} mb={2} borderRadius={5}>
                                     <Button
                                 onClick={()=>handlSelect(payment.id)} overflow={'hidden'}>
-                                    <Image src={payment.img} w={50} />
+                                    <Image src={payment.img} w={70} />
                                 </Button>
                                 </Box>    
                             ))
@@ -39,7 +40,9 @@ export default function addBooking() {
                     </HStack>
                     {/* <DatePicker/> */}
                 </Box>
-                <Checkout method = {paymentMethod}/>
+                {
+                    paymentMethod&& <Checkout method = {paymentMethod}/>
+                }
             </Container>
         </BgFilter>
     )

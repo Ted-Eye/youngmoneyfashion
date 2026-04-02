@@ -99,7 +99,7 @@ const Checkout = ({method}) => {
     return (
         <>
         
-            <Box textAlign={'center'} mx={6} bg={'#7c4d023a'} p={4} border={'solid 1px #853e3e49'} borderRadius={4} pb={1} mt={12}>
+            <Box textAlign={'center'} mx={6} bg={'#7c4d023a'} p={4} border={'solid 1px #853e3e49'} borderRadius={4} pb={1} mt={[12]}>
             <Heading my={2} fontSize={18}  borderBottom={'solid 2px #f9eeee6b'} mb={8}>
                 Paying with {method.short}
             </Heading>
@@ -117,7 +117,7 @@ const Checkout = ({method}) => {
                 <Input name='phone'
                     pl={1} pt={2} pb={0}
                     value={formState.phone}
-                    placeholder='Enter number'
+                    placeholder={method.id===1? 'Enter your MoMo number': 'Enter your OM number'}
                     onChange={handleChange}
                     m={'auto'}
             />

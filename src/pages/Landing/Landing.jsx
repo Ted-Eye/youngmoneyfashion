@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import LandingBg from '../../components/ui/background/LandingBg';
 import { OFFERS } from '../../KONSTANTS/offers';
 import { bold } from '@cloudinary/url-gen/qualifiers/fontWeight';
+import { DEFAULT_REVIEWS } from '../../KONSTANTS/reviews';
 // import {video} from '../../assets/lv_0_20260312012436.mp4'
 
 export default function Landing() {
@@ -15,14 +16,12 @@ export default function Landing() {
         navigate(route)
     }
     const showList = OFFERS
-    useEffect(()=>{
-        
-    },[])
+    const reviews = DEFAULT_REVIEWS
 
     return (
         <BgFilter >
             
-            <Box position={'sticky'} top={[12, 20]} mt={28}
+            <Box position={'sticky'} top={[12, 20]} mt={'78px'}
                 zIndex={2} overflow={'clip'}>
                 <Heading 
                     
@@ -57,8 +56,8 @@ export default function Landing() {
                 
                 <Box h={[600, 800, 1200]} backgroundImage={"url('bgs/bg4.avif')"} backgroundSize={'cover'} backdropFilter={'revert'} backgroundAttachment={'fixed'} backgroundRepeat={'no-repeat'} backgroundBlendMode={'difference'} color={'#1a2f4da1'}>
                     
-                    <Container height={300} w={'100%'} alignItems={'center'} justifyContent={'center'} display={'flex'} color={'#ffffffff'} bg={'#38302778'}>
-                        <Stack gap={[18, 28]}  m={['12px', '38px']} direction={['column', 'row']} borderTop={'solid 8px'} pt={6} mt={8}>
+                    <Container w={'100%'} alignItems={'center'} justifyContent={'center'} display={'flex'} color={'#ffffffff'} bg={'#38302778'}>
+                        <Stack gap={[18, 28]}  m={['12px', '38px']} direction={['column', 'row']} borderTop={'solid 4px'} pt={6} mt={8}>
                             <Box textAlign={'center'}>
                                 <Heading pb={4}>
                                     Our Philosophy:
@@ -82,38 +81,37 @@ export default function Landing() {
                             </Box>
                         </Stack>
                     </Container>
-                    <Box textAlign={'center'}  width={'100%'} bg={'#11183cc8'}>
+                    <Box textAlign={'center'}  width={'100%'} bg={'#11183c76'}>
                         <Box bg={'#ffffffc8'}  borderBottomRadius={'50%'} mx={0} borderBottomLeftRadius={'150px'} borderBottomRightRadius={'150px'} pb={10}>
                             <Heading p={4} fontSize={24}>
                             You're just a few clicks from 
                                 <Span fontWeight={900} pl={1}
-                                textTransform={'uppercase'}letterSpacing={6} color={'#00000074'}>rejuvenation!</Span>
+                                textTransform={'uppercase'}letterSpacing={6} color={'#00000038'}>rejuvenation!</Span>
                             
                         </Heading>
                         <Text>Let's walk the path...</Text>
                         </Box>
                         <SimpleGrid columns={[1, 2, 3]} 
                                     // columnSpan={[12, 6, 4, 3]}
-                                    gap={4} px={4}
-                                    mb={4} mt={-10} >
+                                    gap={4} px={2}
+                                    mt={-4} >
                             {
-                                showList.map((item)=><Box key={item.id} bg={'#7c4e02ad'}
-                                color={'black'} display={'flex'} justifyContent={'center'}  alignItems={'center'} height={['300px, 400px, 600px 750px']}
+                                showList.map((item)=><Box key={item.id} border={'solid 1px #f39703d0'}
+                                color={'#f39703d0'} display={'flex'} justifyContent={'center'} alignItems={'center'} height={['300px, 400px, 600px 750px']}
                                 borderRadius={'5%'} pb={2}
-                                flexDirection={'column'} borderBottomRadius={70}
+                                flexDirection={'column'} 
                                 >
-                                    <HStack gap={4} mt={8} overflow={'hidden'} py={0} mb={2} borderRadius={70} pr={2}>
-                                        <Image 
-                                        w={'74px'} borderRadius={'45%'} padding={2}
-                                        src={item.img}/>
-                                        <Heading color={'white'} mb={8} mt={8} letterSpacing={2} textTransform={'uppercase'}>{item.title}</Heading>
-                                    </HStack>
-                                    <Text mx={4} pb={2} overflow={'hidden'}>
+                                    <Heading color={'#f39703d0'} mb={2} mt={4} letterSpacing={2} textTransform={'uppercase'}>{item.title}</Heading>
+                                    <Stack justifyContent={'center'} alignItems={'center'} gap={2} px={1} overflow={'hidden'}>
+                                        <Image src={item.img} w={200} h={200} borderRadius={'170px'}/>
+                                        <Text mx={4} pb={1} overflow={'hidden'} >
                                             {item.text}
                                         </Text>
-                                    <Button colorScheme={'orange'} size={'lg'} fontWeight={'bold'} borderColor={'#f39703ff'} bg={'black'} color ={'gold'}borderRadius={'25px'} px={4} variant={'outline'} onClick={()=>handleNaavigate(item.route)} mt={4}>{item.action} 
+                                    </Stack>
+                                    
+                                    <Button colorScheme={'orange'} size={'lg'} fontWeight={'bold'} border={'solid 1px #f397036c'} bg={'white'} color ={'black'}borderRadius={'25px'} px={4} variant={'outline'} onClick={()=>handleNaavigate(item.route)} mt={2}>{item.action} 
                                         <Image src='arrow.svg'
-                                            w={8}
+                                            w={6} color={'#1e1c18f7'}
                                         />
                                     </Button>
                                 </Box>)
@@ -122,8 +120,30 @@ export default function Landing() {
                     </Box>
                 </Box>
             </Box>
-            <Box backgroundImage={"url('bgs/bg4.avif')"} backgroundSize={'cover'} backdropFilter={'revert'} backgroundAttachment={'fixed'} backgroundRepeat={'no-repeat'} backgroundBlendMode={'difference'} h={600}>
-                <Heading>Glow and soar </Heading>
+            <Box backgroundImage={"url('bgs/bg4.avif')"} backgroundSize={'cover'} backdropFilter={'revert'} backgroundAttachment={'fixed'} backgroundRepeat={'no-repeat'} backgroundBlendMode={'difference'} textAlign={'center'} w={'98%'} bg={'#2d2dcf28'} borderTopRadius={15} mx={'auto'} borderTop={'solid 1px'}>
+                <Heading fontSize={18} mt={12}>What people are saying about us</Heading>
+                <Stack>
+                    {
+                    reviews.map((review)=>(
+                        <Box key={review.id} borderLeft={'solid 4px #a8661181'} mt={6} py={2} ml={4} px={4} fontSize={16}>
+                            <Text>
+                                {review.msg}
+                            </Text>
+                            <Text>
+                                <i>
+                                    {review.name}, { review.proffesion}
+                                </i>
+                            </Text>
+
+                        </Box>
+                    ))
+                }
+                </Stack>
+            </Box>
+            <Box>
+                <Heading>
+                    FAQ
+                </Heading>
             </Box>
         </BgFilter>
     )
