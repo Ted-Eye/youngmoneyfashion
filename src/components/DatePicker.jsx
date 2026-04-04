@@ -1,68 +1,82 @@
 
 import React, { useState } from "react"
-import { Box, Flex, Stack, Text, HStack, Spacer, Button } from "@chakra-ui/react"
-import { DayPicker } from "react-day-picker"
-import "react-day-picker/dist/style.css"
+import { DatePicker, Button, Portal } from "@chakra-ui/react";
+// import {TimePicker} from 'chakra-ui-time-picker';
+import TimePicker from 'react-time-picker';
+import 'react-time-picker/dist/TimePicker.css';
+import 'react-clock/dist/Clock.css';
+import { LuCalendar } from "react-icons/lu";
 
-const addDays = (date, days) => {
-  const d = new Date(date)
-  d.setDate(d.getDate() + days)
-  return d
-}
+// import "react-day-picker/dist/style.css"
 
-const isSameDay = (a, b) =>
-  a.getFullYear() === b.getFullYear() &&
-  a.getMonth() === b.getMonth() &&
-  a.getDate() === b.getDate()
 
-const presets = (() => {
-  const now = new Date()
-  return [
-    { label: "Today", value: now },
-    { label: "Tomorrow", value: addDays(now, 1) },
-    { label: "Next week", value: addDays(now, 7) },
-    { label: "2 weeks", value: addDays(now, 14) },
-    { label: "4 weeks", value: addDays(now, 28) },
-  ]
-})()
 
-export default function DatePicker() {
-  const [selected, setSelected] = useState(new Date())
+
+
+export default function MyDatePicker({onChange}) {
 
   return (
-    <Box borderWidth="1px" borderRadius="md" overflow="hidden">
-      <Flex>
-        <Stack gap={0} minW="100px" borderRightWidth="1px" py={2} px={2}>
-          {presets.map((preset) => {
-            const active = isSameDay(preset.value, selected)
-            return (
-              <Button
-                key={preset.label}
-                onClick={() => setSelected(preset.value)}
-                justifyContent="space-between"
-                variant={active ? "solid" : "ghost"}
-                size="sm"
-                height="10"
-                display="flex"
-              >
-                <Text>{preset.label}</Text>
-                <Text color="gray.500" fontSize="sm">
-                  {preset.value.toLocaleDateString()}
-                </Text>
-              </Button>
-            )
-          })}
-        </Stack>
+      <DatePicker.Root maxWidth="20rem">
+      <DatePicker.Label>Date</DatePicker.Label>
+      <DatePicker.Control>
+        <DatePicker.Input pl={4} color={'#613101fe'}/>
+        <DatePicker.IndicatorGroup>
+          <DatePicker.Trigger>
+            <LuCalendar color="#613101fe"/>
+          </DatePicker.Trigger>
+        </DatePicker.IndicatorGroup>
+      </DatePicker.Control>
+      <Portal>
+        <DatePicker.Positioner>
+          <DatePicker.Content>
+            <DatePicker.View view="day">
+              <DatePicker.Header />
+              <DatePicker.DayTable />
+              <DatePicker.Context>
+                {(api) => (
+                  <Button
+                    variant="subtle"
+                    size="sm"
+                    onClick={() => api.selectToday()}
+                  >
+                    Today
+                  </Button>
+                )}
+              </DatePicker.Context>
+            </DatePicker.View>
+            <DatePicker.View view="month">
+              <DatePicker.Header />
+              <DatePicker.MonthTable />
+            </DatePicker.View>
+            <DatePicker.View view="year">
+              <DatePicker.Header />
+              <DatePicker.YearTable />
+            </DatePicker.View>
+          </DatePicker.Content>
+        </DatePicker.Positioner>
+      </Portal>
+    </DatePicker.Root>
+  )
+}
 
-        <Box p={3}>
-          <HStack justify="space-between" gap={0} mb={2}>
-            <Text fontWeight="medium">{selected.toLocaleDateString()}</Text>
-            <Spacer />
-          </HStack>
+export const MyTimePicker = ({onChange}) => {
+  const [time, setTime] = useState('10:00');
+  const handleChange = (value) => {
+    setTime(value);
+    // onChange({ target: { name: 'time', value } });
+  };
+  return (
 
-          <DayPicker mode="single" selected={selected} onSelect={setSelected} />
-        </Box>
-      </Flex>
-    </Box>
+    <TimePicker
+      // key={time?.toISOString()}
+      value={time}
+      hourAriaLabel="Hour"
+      clockIcon={null}
+      maxTime="22:15:00"
+      minTime="05:59:00"
+      onChange={onChange ? onChange : handleChange }
+      // onChange={(value) => setTime(value)}
+      label="Select Time"
+    />
   )
 }

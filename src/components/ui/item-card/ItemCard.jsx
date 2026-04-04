@@ -64,7 +64,7 @@ export default function ItemCard({item}) {
                 </Card.Body>
                 <Card.Footer justifyContent={'center'} pb={4}>
                     <Appointment item={item}/>
-                    <Button onClick={()=>deleteHairstyle(item.id)}>Delete</Button>
+                    {/* <Button onClick={()=>deleteHairstyle(item.id)}>Delete</Button> */}
                 </Card.Footer>
             </Card.Root>
             

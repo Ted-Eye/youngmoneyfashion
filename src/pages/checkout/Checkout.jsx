@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../../api';
 import { Box, Button, Heading, Input, Text, Link, NumberInputLabel, FieldLabel, HStack } from '@chakra-ui/react';
-import {Link as RouterLink, useNavigate} from 'react-router-dom';
+import {Link as RouterLink, useLocation, useNavigate} from 'react-router-dom';
 import { ArrowRightIcon } from 'lucide-react';
 
 
@@ -14,6 +14,10 @@ const Checkout = ({method}) => {
             reference: null
         }
     )
+    const {state} = useLocation()
+    const cart = state
+    console.log('CART:...', cart)
+    // console.log('ITEM:...', state)
     const TransactionState = formState.status === "initiating" ? "Initiating payment..." : formState.status === "pending" ? "Waiting confirmation..." : formState.status === "success" ? "Payment completed successfully!" : formState.status === "failed" ? "Payment failed!" : ""
     const [newAppointment, setNewAppointment] = useState(null)
     const navigate = useNavigate()
@@ -41,7 +45,7 @@ const Checkout = ({method}) => {
                 setFormState((formState) => ({ ...formState, status: "success" }))
                 // setLoading(false)
                 clearInterval(interval)
-                navigate('/bookings', {state: {newAppointment, TransactionState}})
+                navigate('/bookings', {state: {newAppointment}})
             }
             if (data.status === "FAILED") {
                 setFormState((formState) => ({ ...formState, status: "failed" }))
@@ -77,7 +81,7 @@ const Checkout = ({method}) => {
             console.log('NEW APPOINTMENT:...', appointment)
             startPolling(newRef)
         } catch (error) {
-            if (error.message==='Network Error' || 'timeout exceeded' ) {
+            if (error.message==='Network Error' || error.message==='timeout exceeded' ) {
                 alert('No internet. Check your connection and try again')
                 setLoading(false)
                 setFormState((formState) => ({ ...formState, status: "idle" }))

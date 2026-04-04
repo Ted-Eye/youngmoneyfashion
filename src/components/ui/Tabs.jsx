@@ -27,11 +27,11 @@ export const SortingTabs = ({tabs}) => {
         }
     }
     return (
-            <Tabs.Root mt={16} defaultValue={tabs[0].name.toLowerCase()} variant="line">
+            <Tabs.Root mt={16} defaultValue={tabs[0].name.toLowerCase()} variant="line" >
         <Tabs.List bg="#1c1919c5" rounded="l3" display={'flex'} alignItems={'center'} gap={[3, 40, 40, '430px']} mb={[6]} position={'fixed'} top={['80px', '100px', '120px']} zIndex={100} w={'92%'} left={['24px', '28px', '42px', '58px']}>
             {tabs.map((tab) => (
                 
-                <Tabs.Trigger value={tab.name.toLowerCase()} key={tab.name} pl={2}>
+                <Tabs.Trigger value={tab.name.toLowerCase()} key={tab.name} pl={2} overflow={'hidden'}>
                 {getTabIcon(tab.name)}
                 {tab.name}
                 </Tabs.Trigger>

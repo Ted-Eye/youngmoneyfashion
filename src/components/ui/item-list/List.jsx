@@ -7,7 +7,7 @@ const List = ({items}) => {
     return (
         <SimpleGrid 
             columns={[1, 2, 4]} 
-            gap={4} 
+            gap={8} mt={14}
             alignItems={'center'} 
             >
                 {
