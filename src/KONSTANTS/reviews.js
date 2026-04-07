@@ -15,6 +15,6 @@ export const DEFAULT_REVIEWS = [
         id: 3,
         name: 'Yolande Metouga',
         proffesion: "Etudiante a l'Universite Catholique, Coron",
-        msg: "Juste pour vous dire merci. J'ai bien aimee la brezilianne. gros bizou a vous"
+        msg: "Juste pour vous dire merci. J'ai bien aimee la brezilianne. gros bizou a vous."
     }
 ]

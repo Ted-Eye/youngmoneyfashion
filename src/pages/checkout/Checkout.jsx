@@ -121,7 +121,7 @@ const Checkout = ({method}) => {
     return (
         <>
             <Heading mt={4} fontSize={18}  borderBottom={'solid 2px #c8630cb2'} >
-                Paying with {method.short}
+                {`Paying ${cart.item.price} CFA with ${method.short}`}
             </Heading>
             <Box textAlign={'center'} mx={6} bg={'#d5dae1ff'} p={4} border={'solid 1px #853e3e49'} borderRadius={4} pb={1} mt={[4, 6]}>
 

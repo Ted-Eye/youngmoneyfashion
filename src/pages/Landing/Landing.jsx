@@ -8,6 +8,8 @@ import LandingBg from '../../components/ui/background/LandingBg';
 import { OFFERS } from '../../KONSTANTS/offers';
 import { bold } from '@cloudinary/url-gen/qualifiers/fontWeight';
 import { DEFAULT_REVIEWS } from '../../KONSTANTS/reviews';
+import { ContactForm } from '../../components/ui/landing/ContactForm';
+import Footer from '../../components/ui/footer/Footer';
 // import {video} from '../../assets/lv_0_20260312012436.mp4'
 
 export default function Landing() {
@@ -86,7 +88,7 @@ export default function Landing() {
                             <Heading p={4} fontSize={24}>
                             You're just a few clicks from 
                                 <Span fontWeight={900} pl={1}
-                                textTransform={'uppercase'}letterSpacing={6} color={'#00000038'}>rejuvenation!</Span>
+                                textTransform={'uppercase'}letterSpacing={6} color={'#f39703ff'}>rejuvenation!</Span>
                             
                         </Heading>
                         <Text>Let's walk the path...</Text>
@@ -125,7 +127,7 @@ export default function Landing() {
                 <Stack>
                     {
                     reviews.map((review)=>(
-                        <Box key={review.id} borderLeft={'solid 4px #a8661181'} mt={6} py={2} ml={4} px={4} fontSize={16}>
+                        <Box key={review.id} border={'solid 2px #a8661181'} borderRadius={12} mt={6} py={2} px={4} fontSize={16}>
                             <Text>
                                 {review.msg}
                             </Text>
@@ -140,11 +142,13 @@ export default function Landing() {
                 }
                 </Stack>
             </Box>
-            <Box>
+            <Stack alignItems={'center'} mt={6} px={4} justifyContent={'center'} textAlign={'center'}>
                 <Heading>
-                    FAQ
+                    Get in touch
                 </Heading>
-            </Box>
+                <ContactForm/>
+            </Stack>
+            <Footer/>
         </BgFilter>
     )
 }

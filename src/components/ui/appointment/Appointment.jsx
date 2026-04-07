@@ -34,7 +34,6 @@ export default function Appointment({item}) {
         }
         navigate('/checkout', {state: cart})
     }
-    console.log(cart)
     return (
     <>
         <Dialog.Root>

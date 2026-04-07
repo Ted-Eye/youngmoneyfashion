@@ -23,7 +23,7 @@ export const FOOTE_NOTES = [
 
 export const DEVELOPER = {
     name: 'Ted Eye Legacies',
-    phone: 237671565160,
+    phone: '+237671565160',
     email: 'booktedeye@gmail.com',
     github: 'Ted-Eye'
 }
