@@ -26,7 +26,7 @@ const Bookings = () => {
                                     <Text>{`Ticket number: ${appointment.ticket_number}`}</Text>
                                     <Text>{`Customer name: ${appointment.bearer}`}</Text>
                                     <Text>{`Scheduled date: ${new Date(appointment.scheduled_date).toLocaleDateString()}`}</Text>
-                                    <Text>{`Time: ${new Date(appointment.scheduled_date).toLocaleTimeString()}`}</Text>
+                                    <Text>{`Time: ${appointment.scheduled_time}`}</Text>
                                 </Box>
                                 <Box>
                                     <Button mt={8} bg={'#995e12ff'} color={'white'} onClick={()=>window.print()} px={4}>

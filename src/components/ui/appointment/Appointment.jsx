@@ -8,18 +8,31 @@ export default function Appointment({item}) {
     
     const [cart, setCart] = useState({
         item: item,
-        date: null,
-        time: null,
+        date: (() => {
+            const today = new Date();
+            const year = String(today.getFullYear()).slice(-2);
+            const month = String(today.getMonth() + 1).padStart(2, 0);
+            const day = String(today.getDate()).padStart(2, 0);
+            return `${year}:${month}:${day}`;
+        })(),
+        time: "15:00",
         venue: "salon"
     })
-    const handleChange = (e) => {
-        e.preventDefault()
+    const handleInputChange = (e) => {
         const { name, value } = e.target;
         setCart((cart)=>({...cart, [name]: value}))
     }
+    const handleValueChange = (name) => (value) => {
+        // Handle both raw values and objects with value property (like RadioGroup)
+        const actualValue = value && typeof value === 'object' && 'value' in value ? value.value : value;
+        setCart((cart)=>({...cart, [name]: actualValue}))
+    }
     const navigate = useNavigate()
-    const handlleClick = ()=>{
-        navigate('/checkout', {state: item})
+    const handlleClick = (e)=>{
+        if (e && e.preventDefault) {
+            e.preventDefault();
+        }
+        navigate('/checkout', {state: cart})
     }
     console.log(cart)
     return (
@@ -34,7 +47,7 @@ export default function Appointment({item}) {
         <Portal>
             <Dialog.Backdrop bg={'#6d510cf3'}/>
             <Dialog.Positioner position={'fixed'} top={[0, 20]}>
-            <Dialog.Content bg={'#d5dae1ff'} as='form'>
+            <Dialog.Content bg={'#d5dae1ff'}>
                 <Dialog.Header>
                     <VStack py={1} gap={1} w={['100%']} bg={'#000000ff'}>
                         <Image src="doctor.png" w={120} borderBottom={'solid 1px'} pb={1}/>
@@ -67,8 +80,9 @@ export default function Appointment({item}) {
                     <Box>
                                 <RadioGroup.Root variant={'solid'} colorPalette={'#575024d5'}
                                 name="venue"
-                                onChange={handleChange}
-                                defaultValue={cart.venue} mt={2} border={'solid 0.5px #5750247b'} borderRadius={4} p={2}>
+                                value={cart.venue}
+                                onValueChange={handleValueChange('venue')}
+                                mt={2} border={'solid 0.5px #5750247b'} borderRadius={4} p={2}>
                                     <HStack gap={4}>
                                         <RadioGroup.Item value="salon" >
                                             <RadioGroup.ItemHiddenInput/>
@@ -77,7 +91,7 @@ export default function Appointment({item}) {
                                                 Salon
                                             </RadioGroup.ItemText>
                                         </RadioGroup.Item>
-                                        <RadioGroup.Item value="at_home" minW={'120px'}>
+                                        <RadioGroup.Item value="home" minW={'120px'}>
                                             <RadioGroup.ItemHiddenInput/>
                                             <RadioGroup.ItemIndicator/>
                                             <RadioGroup.ItemText fontSize={[14, 16]}>
@@ -97,8 +111,8 @@ export default function Appointment({item}) {
                     <Box py={1}>
                 </Box>
                 <Stack direction={['column', 'column']} alignItems={'left'} gap={4} w={'100%'} px={4} mb={2}>
-                    <MyDatePicker onChange={handleChange}/>
-                    <MyTimePicker onChange={handleChange}/>
+                    <MyDatePicker onChange={handleValueChange('date')} name="date" value={cart.date}/>
+                    <MyTimePicker onChange={handleValueChange('time')} name="time" value={cart.time}/>
                 </Stack>
                 </VStack>
                 </Dialog.Body>

@@ -39,7 +39,7 @@ export default function Landing() {
             </Box>
             <HStack gap={2} position={'relative'} overflow={'clip'}>
                 <Box h={[200, 250, 350]}   maxWidth={'50%'}              
-                        bg={'rgba(199, 179, 134, 0.02)'} 
+                        bg={'#11183c76'} 
                         borderTopEndRadius={500}  
                         borderBottomEndRadius={500}>
                     {/* <Heading mt={6} borderBottom={'solid 2px #874e4ebc'} px={2} >
@@ -56,7 +56,7 @@ export default function Landing() {
                 
                 <Box h={[600, 800, 1200]} backgroundImage={"url('bgs/bg4.avif')"} backgroundSize={'cover'} backdropFilter={'revert'} backgroundAttachment={'fixed'} backgroundRepeat={'no-repeat'} backgroundBlendMode={'difference'} color={'#1a2f4da1'}>
                     
-                    <Container w={'100%'} alignItems={'center'} justifyContent={'center'} display={'flex'} color={'#ffffffff'} bg={'#38302778'}>
+                    <Container w={'100%'} alignItems={'center'} justifyContent={'center'} display={'flex'} color={'#ffffffff'} bg={'#11183c76'}>
                         <Stack gap={[18, 28]}  m={['12px', '38px']} direction={['column', 'row']} borderTop={'solid 4px'} pt={6} mt={8}>
                             <Box textAlign={'center'}>
                                 <Heading pb={4}>
